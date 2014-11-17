@@ -39,7 +39,7 @@ API_VERSION = 'v1beta2'
 class Datastore(object):
   """Datastore client connection constructor."""
 
-  def __init__(self, dataset, credentials=None, host=None):
+  def __init__(self, dataset, credentials=None, host=None, http=None):
     """Datastore client connection constructor.
 
     Args:
@@ -54,7 +54,7 @@ class Datastore(object):
     Raises:
       TypeError: when dataset is needed, but not provided.
     """
-    self._http = httplib2.Http()
+    self._http = http or httplib2.Http()
     if not dataset:
       raise TypeError('dataset argument is required')
     if not host:
